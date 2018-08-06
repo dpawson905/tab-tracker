@@ -20,10 +20,14 @@ export default {
   },
   methods: {
     async register() {
-      await AuthenticationService.register({
-        email: this.email,
-        password: this.password
-      });
+      try {
+        await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        });
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
     }
   }
 };
