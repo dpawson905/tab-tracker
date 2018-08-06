@@ -5,9 +5,11 @@ module.exports = {
     node: true
   },
   extends: "eslint:recommended",
+  parser: "babel-eslint",
   parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: "module",
+    allowImportExportEverywhere: false,
+    codeFrame: false
   },
   rules: {
     indent: ["error", 2],
