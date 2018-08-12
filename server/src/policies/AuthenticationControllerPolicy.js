@@ -3,9 +3,11 @@ const Joi = require("joi");
 module.exports = {
   register(req, res, next) {
     const schema = {
-      email: Joi.string().email({
-        minDomainAtoms: 2
-      }),
+      email: Joi.string()
+        .email({
+          minDomainAtoms: 2
+        })
+        .required(),
       password: Joi.string()
         .regex(new RegExp(/^[-@./#&+\w\s]{8,30}$/))
         .required()
@@ -21,13 +23,13 @@ module.exports = {
           break;
         case "password":
           res.status(400).send({
-            error: `The password provided failed to match the following rules:
-            <br>
+            error: `<p>The password provided failed to match the following rules:
+            <br/>
             1. It must contain ONLY the following characters: lower case, upper case and numerics
-            <br>
+            <br/>
             2. It must contain ONLY the following special characters: -@./#&+
-            <br>
-            3. It must be AT LEAST 8 characters long and NO MORE than 30 characters long`
+            <br/>
+            3. It must be AT LEAST 8 characters long and NO MORE than 30 characters long</p>`
           });
           break;
         default:

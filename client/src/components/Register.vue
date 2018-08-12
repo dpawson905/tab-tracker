@@ -1,12 +1,37 @@
 <template>
-  <div>
-    <h1>Register</h1>
-    <input type="email" v-model="email" name="email" placeholder="email" />
-    <br>
-    <input type="password" v-model="password" name="password" placeholder="password" />
-    <br>
-    <button @click="register">Register</button>
-  </div>
+  <v-container>
+    <v-form>
+      <v-layout>
+        <v-flex xs8 offset-xs2>
+          <div class="white elevation-2">
+            <v-toolbar flat dense class="cyan" dark>
+              <v-toolbar-title>Register</v-toolbar-title>
+            </v-toolbar>
+            <div class="pl-4 pr-4 pt-2 pb-2">
+              <v-text-field
+                name="email"
+                label="Email address"
+                v-model="email"
+                >
+              </v-text-field>
+              <v-text-field
+                v-model="password"
+                :append-icon="show3 ? 'visibility_off' : 'visibility'"
+                :rules="[rules.required, rules.min, rules.max]"
+                :type="show3 ? 'text' : 'password'"
+                name="password"
+                label="Password"
+                hint="At least 8 characters"
+                @click:append="show3 = !show3">
+              </v-text-field>        
+              <div class="error-msg" v-html="error" />
+              <v-btn class="cyan" dark @click="register">Register</v-btn>
+            </div>
+          </div>
+        </v-flex>
+      </v-layout>
+    </v-form>
+  </v-container>
 </template>
 
 <script>
@@ -15,7 +40,14 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      error: null,
+      show3: false,
+      rules: {
+        required: value => !!value || "Required.",
+        min: v => v.length >= 8 || "Min 8 characters.",
+        max: v => v.length <= 30 || "Max 30 characters"
+      }
     };
   },
   methods: {
@@ -29,10 +61,22 @@ export default {
         this.error = error.response.data.error;
       }
     }
+  },
+  mounted() {
+    const plugin = document.createElement("script");
+    plugin.setAttribute(
+      "src",
+      "../../node_modules/vuetify/dist/vuetify.min.js"
+    );
+    plugin.async = true;
+    document.body.appendChild(plugin);
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.error-msg {
+  color: red;
+}
 </style>
