@@ -4,7 +4,7 @@
       <v-layout>
         <v-flex xs8 offset-xs2>
           <div class="white elevation-2">
-            <v-toolbar flat dense class="cyan" dark>
+            <v-toolbar flat dense class="indigo" dark>
               <v-toolbar-title>Register</v-toolbar-title>
             </v-toolbar>
             <div class="pl-4 pr-4 pt-2 pb-2">
@@ -25,7 +25,7 @@
                 @click:append="show3 = !show3">
               </v-text-field>        
               <div class="error-msg" v-html="error" />
-              <v-btn class="cyan" dark @click="register">Register</v-btn>
+              <v-btn class="indigo" dark @click="register">Register</v-btn>
             </div>
           </div>
         </v-flex>
