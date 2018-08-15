@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-form>
+    <v-form autocomplete="off">
       <v-layout>
         <v-flex xs8 offset-xs2>
           <div class="white elevation-2">
@@ -21,6 +21,7 @@
                 :type="show3 ? 'text' : 'password'"
                 name="password"
                 label="Password"
+                autocomplete="new-password"
                 hint="At least 8 characters"
                 @click:append="show3 = !show3">
               </v-text-field>        
