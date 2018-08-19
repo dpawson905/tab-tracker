@@ -3,10 +3,7 @@
     <v-form>
       <v-layout>
         <v-flex xs8 offset-xs2>
-          <div class="white elevation-2">
-            <v-toolbar flat dense class="indigo" dark>
-              <v-toolbar-title>Login</v-toolbar-title>
-            </v-toolbar>
+          <panel title="Login">
             <div class="pl-4 pr-4 pt-2 pb-2">
               <v-text-field
                 name="email"
@@ -27,7 +24,7 @@
               <div class="error-msg" v-html="error" />
               <v-btn class="indigo" dark @click="login">Login</v-btn>
             </div>
-          </div>
+          </panel>
         </v-flex>
       </v-layout>
     </v-form>
@@ -36,6 +33,7 @@
 
 <script>
 import AuthenticationService from "@/services/AuthenticationService";
+import Panel from "@/components/Panel";
 export default {
   data() {
     return {
@@ -72,6 +70,9 @@ export default {
     );
     plugin.async = true;
     document.body.appendChild(plugin);
+  },
+  components: {
+    Panel
   }
 };
 </script>
